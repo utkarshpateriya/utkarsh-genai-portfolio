@@ -43,9 +43,10 @@ export default function Typewriter({
   }, [text, isDeleting, wordIndex, words, typingSpeed, deletingSpeed, pauseDuration]);
 
   return (
-    <span className="font-mono text-cyber-cyan">
+    <span className="font-body text-[16px] font-light" style={{ color: "rgba(255,255,255,0.65)" }}>
+      <span className="text-cyber-cyan mr-1.5">→</span>
       {text}
-      <span className="animate-pulse text-neon-violet">|</span>
+      <span className="animate-pulse ml-0.5" style={{ color: "rgba(0,245,255,0.5)" }}>|</span>
     </span>
   );
 }

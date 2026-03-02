@@ -41,3 +41,5 @@ logs/
 # Screenshots
 *.png
 !public/*.png
+
+.vercel

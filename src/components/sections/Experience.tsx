@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import GlitchText from "../ui/GlitchText";
+import SectionHeading from "../ui/GlitchText";
 
 interface TimelineEntry {
   role: string;
@@ -43,18 +43,18 @@ const timeline: TimelineEntry[] = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="relative min-h-screen py-24 px-4 snap-section">
+    <section id="experience" className="relative min-h-screen pt-28 pb-24 px-4 snap-section">
       <div className="max-w-4xl mx-auto">
-        <GlitchText text="EXPERIENCE" as="h2" className="text-4xl md:text-5xl text-white mb-16 text-center" />
+        <SectionHeading text="EXPERIENCE" as="h2" className="mb-14 text-center" />
 
         <div className="relative">
           {/* Vertical line */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-cyber-cyan/50 via-neon-violet/50 to-transparent" />
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px" style={{ background: "linear-gradient(to bottom, rgba(0,245,255,0.25), rgba(157,0,255,0.2), transparent)" }} />
 
           {timeline.map((entry, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
+              initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.15 }}
@@ -64,18 +64,19 @@ export default function Experience() {
             >
               {/* Timeline dot */}
               <div
-                className={`absolute top-2 w-3 h-3 rounded-full bg-cyber-cyan shadow-[0_0_10px_#00f5ff] left-[10px] md:left-auto ${
-                  index % 2 === 0 ? "md:right-[-6px]" : "md:left-[-6px]"
+                className={`absolute top-2 w-2.5 h-2.5 rounded-full left-[11px] md:left-auto ${
+                  index % 2 === 0 ? "md:right-[-5px]" : "md:left-[-5px]"
                 }`}
+                style={{ backgroundColor: "#00f5ff", boxShadow: "0 0 8px rgba(0,245,255,0.4)" }}
               />
 
-              <div className="glass rounded-xl p-6 hover:border-cyber-cyan/20 transition-colors">
-                <div className="font-display text-sm text-cyber-cyan mb-1">{entry.period}</div>
-                <h3 className="text-lg font-display text-white mb-1">{entry.role}</h3>
-                <div className="text-neon-violet font-mono text-sm mb-3">{entry.company}</div>
-                <ul className={`space-y-2 ${index % 2 === 0 ? "md:text-right" : ""}`}>
+              <div className="glass rounded-xl p-6 hover:border-white/10 transition-colors">
+                <div className="label-mono text-cyber-cyan mb-2">{entry.period}</div>
+                <h3 className="font-display text-[18px] font-semibold mb-1" style={{ color: "rgba(255,255,255,0.9)" }}>{entry.role}</h3>
+                <div className="label-mono mb-4" style={{ color: "rgba(157,0,255,0.7)" }}>{entry.company}</div>
+                <ul className={`space-y-2.5 ${index % 2 === 0 ? "md:text-right" : ""}`}>
                   {entry.bullets.map((bullet, i) => (
-                    <li key={i} className="text-dim-gray text-sm font-mono leading-relaxed">
+                    <li key={i} className="font-body text-[14px] font-light leading-[1.7]" style={{ color: "rgba(255,255,255,0.55)" }}>
                       {bullet}
                     </li>
                   ))}

@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "Hero", href: "#hero" },
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
@@ -24,9 +23,9 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // IntersectionObserver for active section
   useEffect(() => {
-    const sections = navLinks.map((l) => document.querySelector(l.href));
+    const allSections = [{ href: "#hero" }, ...navLinks];
+    const sections = allSections.map((l) => document.querySelector(l.href));
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -58,7 +57,8 @@ export default function Navbar() {
           {/* Logo */}
           <a
             href="#hero"
-            className="font-display text-xl tracking-wider text-white hover:text-cyber-cyan transition-colors group"
+            className="font-display text-[18px] font-semibold tracking-[0.15em] transition-colors"
+            style={{ color: "rgba(255,255,255,0.85)" }}
           >
             U<span className="text-cyber-cyan">.</span>AI
           </a>
@@ -69,11 +69,14 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className={`px-3 py-1.5 font-mono text-xs rounded transition-all duration-300 ${
+                className={`px-3 py-1.5 font-mono text-[11px] tracking-[0.1em] uppercase rounded transition-all duration-300 ${
                   activeSection === link.href.slice(1)
-                    ? "text-cyber-cyan bg-cyber-cyan/10"
-                    : "text-dim-gray hover:text-white"
+                    ? "text-cyber-cyan bg-cyber-cyan/8"
+                    : "hover:text-white/70"
                 }`}
+                style={{
+                  color: activeSection === link.href.slice(1) ? undefined : "rgba(255,255,255,0.4)",
+                }}
               >
                 {link.label}
               </a>
@@ -82,11 +85,12 @@ export default function Navbar() {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden p-2 text-dim-gray hover:text-white transition-colors"
+            className="md:hidden p-2 transition-colors"
+            style={{ color: "rgba(255,255,255,0.5)" }}
             onClick={() => setMobileOpen(true)}
             aria-label="Open menu"
           >
-            <Menu size={24} />
+            <Menu size={22} />
           </button>
         </div>
       </motion.nav>
@@ -101,11 +105,12 @@ export default function Navbar() {
             exit={{ opacity: 0 }}
           >
             <button
-              className="absolute top-5 right-5 p-2 text-dim-gray hover:text-white"
+              className="absolute top-5 right-5 p-2"
+              style={{ color: "rgba(255,255,255,0.5)" }}
               onClick={() => setMobileOpen(false)}
               aria-label="Close menu"
             >
-              <X size={28} />
+              <X size={24} />
             </button>
 
             <div className="flex flex-col items-center gap-6">
@@ -114,10 +119,11 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="font-display text-2xl text-white hover:text-cyber-cyan transition-colors"
+                  className="font-display text-[22px] font-semibold tracking-[0.08em] transition-colors"
+                  style={{ color: "rgba(255,255,255,0.8)" }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
+                  transition={{ delay: i * 0.08 }}
                 >
                   {link.label}
                 </motion.a>

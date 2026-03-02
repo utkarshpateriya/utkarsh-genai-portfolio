@@ -18,22 +18,19 @@ export default function CountUpStat({
   return (
     <div
       ref={ref}
-      className="glass rounded-xl p-6 text-center hover:border-cyber-cyan/30 transition-all duration-300"
-      style={{
-        boxShadow: "0 0 15px rgba(0, 245, 255, 0.05)",
-      }}
+      className="glass rounded-xl p-6 text-center hover:border-white/10 transition-all duration-300"
     >
       {isInfinity ? (
-        <div className="text-5xl font-display text-cyber-cyan infinity-pulse mb-2">
+        <div className="font-display text-[52px] font-bold text-cyber-cyan infinity-pulse mb-2">
           ∞
         </div>
       ) : (
-        <div className="text-5xl font-display text-cyber-cyan mb-2">
+        <div className="font-display text-[52px] font-bold text-cyber-cyan mb-2">
           {count}
-          <span className="text-3xl">{suffix}</span>
+          <span className="text-[36px]">{suffix}</span>
         </div>
       )}
-      <div className="text-sm text-dim-gray font-mono">{label}</div>
+      <div className="label-mono" style={{ color: "rgba(255,255,255,0.4)" }}>{label}</div>
     </div>
   );
 }

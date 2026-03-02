@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import GlitchText from "../ui/GlitchText";
+import SectionHeading from "../ui/GlitchText";
 import HolographicCard from "../ui/HolographicCard";
 import { projects as configProjects } from "../../config/projects.config";
 
@@ -7,10 +7,10 @@ export default function Projects() {
   const visibleProjects = configProjects.filter((p) => p.visible);
 
   return (
-    <section id="projects" className="relative min-h-screen py-24 px-4 snap-section">
+    <section id="projects" className="relative min-h-screen pt-28 pb-24 px-4 snap-section">
       <div className="max-w-6xl mx-auto">
-        <GlitchText text="PROJECTS" as="h2" className="text-4xl md:text-5xl text-white mb-4 text-center" />
-        <p className="text-center text-dim-gray font-mono text-sm mb-16">
+        <SectionHeading text="PROJECTS" as="h2" className="mb-3 text-center" />
+        <p className="text-center label-mono mb-14" style={{ color: "rgba(255,255,255,0.35)" }}>
           Systems built. Problems solved. Production shipped.
         </p>
 
@@ -24,7 +24,8 @@ export default function Projects() {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-center text-dim-gray font-mono"
+            className="text-center label-mono"
+            style={{ color: "rgba(255,255,255,0.35)" }}
           >
             Projects loading...
           </motion.p>

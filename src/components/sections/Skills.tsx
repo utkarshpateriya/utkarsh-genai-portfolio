@@ -1,6 +1,6 @@
 import { Suspense, lazy } from "react";
 import { motion } from "framer-motion";
-import GlitchText from "../ui/GlitchText";
+import SectionHeading from "../ui/GlitchText";
 
 const SkillConstellation = lazy(() => import("../three/SkillConstellation"));
 
@@ -13,10 +13,10 @@ interface SkillCategory {
 
 const skillCategories: SkillCategory[] = [
   {
-    name: "AI/ML",
+    name: "AI / ML",
     headingClass: "text-cyber-cyan",
     pillClass:
-      "border-cyber-cyan/20 text-cyber-cyan/80 bg-cyber-cyan/5 hover:bg-cyber-cyan/10",
+      "border-cyber-cyan/15 text-cyber-cyan/70 bg-cyber-cyan/5 hover:bg-cyber-cyan/10",
     skills: [
       "LangGraph",
       "LangChain",
@@ -27,38 +27,34 @@ const skillCategories: SkillCategory[] = [
     ],
   },
   {
-    name: "Backend",
+    name: "BACKEND",
     headingClass: "text-neon-violet",
     pillClass:
-      "border-neon-violet/20 text-neon-violet/80 bg-neon-violet/5 hover:bg-neon-violet/10",
+      "border-neon-violet/15 text-neon-violet/70 bg-neon-violet/5 hover:bg-neon-violet/10",
     skills: ["Python", "FastAPI", "REST APIs", "Async Programming"],
   },
   {
-    name: "Infrastructure",
+    name: "INFRASTRUCTURE",
     headingClass: "text-green-400",
     pillClass:
-      "border-green-400/20 text-green-400/80 bg-green-400/5 hover:bg-green-400/10",
+      "border-green-400/15 text-green-400/70 bg-green-400/5 hover:bg-green-400/10",
     skills: ["Supabase", "Vercel", "Docker", "GitHub Actions"],
   },
   {
-    name: "Mindset",
+    name: "MINDSET",
     headingClass: "text-orange-400",
     pillClass:
-      "border-orange-400/20 text-orange-400/80 bg-orange-400/5 hover:bg-orange-400/10",
+      "border-orange-400/15 text-orange-400/70 bg-orange-400/5 hover:bg-orange-400/10",
     skills: ["Production-Grade", "Fast Shipping", "AI-First Development"],
   },
 ];
 
 export default function Skills() {
   return (
-    <section id="skills" className="relative min-h-screen py-24 px-4 snap-section">
+    <section id="skills" className="relative min-h-screen pt-28 pb-24 px-4 snap-section">
       <div className="max-w-6xl mx-auto">
-        <GlitchText
-          text="TECH STACK"
-          as="h2"
-          className="text-4xl md:text-5xl text-white mb-4 text-center"
-        />
-        <p className="text-center text-dim-gray font-mono text-sm mb-12">
+        <SectionHeading text="TECH STACK" as="h2" className="mb-3 text-center" />
+        <p className="text-center label-mono mb-14" style={{ color: "rgba(255,255,255,0.35)" }}>
           Constellation of capabilities
         </p>
 
@@ -72,7 +68,7 @@ export default function Skills() {
         >
           <Suspense
             fallback={
-              <div className="h-[500px] flex items-center justify-center text-dim-gray font-mono text-sm">
+              <div className="h-[500px] flex items-center justify-center label-mono" style={{ color: "rgba(255,255,255,0.3)" }}>
                 Loading constellation...
               </div>
             }
@@ -81,25 +77,25 @@ export default function Skills() {
           </Suspense>
         </motion.div>
 
-        {/* Fallback skill pills */}
+        {/* Skill category cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {skillCategories.map((category, catIdx) => (
             <motion.div
               key={category.name}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: catIdx * 0.1 }}
               className="glass rounded-xl p-5"
             >
-              <h3 className={`font-display text-sm mb-4 ${category.headingClass}`}>
+              <h3 className={`label-mono mb-4 ${category.headingClass}`}>
                 {category.name}
               </h3>
               <div className="flex flex-wrap gap-2">
                 {category.skills.map((skill) => (
                   <span
                     key={skill}
-                    className={`px-3 py-1.5 text-xs font-mono rounded-full border transition-colors ${category.pillClass}`}
+                    className={`px-3 py-1.5 text-[11px] font-mono rounded-full border transition-colors ${category.pillClass}`}
                   >
                     {skill}
                   </span>
