@@ -1,0 +1,35 @@
+{
+  "mcpServers": {
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/"
+    },
+    "vercel": {
+      "type": "http",
+      "url": "https://mcp.vercel.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${VERCEL_API_TOKEN:-}"
+      }
+    },
+    "supabase": {
+      "type": "http",
+      "url": "https://mcp.supabase.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${SUPABASE_API_KEY:-}"
+      }
+    },
+    "stitch": {
+      "type": "stdio",
+      "command": "cmd",
+      "args": ["/c", "npx", "-y", "@_davideast/stitch-mcp", "proxy"]
+    },
+    "react-bits": {
+      "type": "stdio",
+      "command": "cmd",
+      "args": ["/c", "npx", "-y", "reactbits-dev-mcp-server"],
+      "env": {
+        "GITHUB_TOKEN": "${GITHUB_TOKEN:-}"
+      }
+    }
+  }
+}
