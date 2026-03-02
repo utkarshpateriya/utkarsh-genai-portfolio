@@ -34,3 +34,10 @@ desktop.ini
 # Logs
 logs/
 *.log
+
+# Playwright
+.playwright-mcp/
+
+# Screenshots
+*.png
+!public/*.png

@@ -1,48 +1,104 @@
-# Portfolio Website
+# UTKARSH — AI Systems Engineer Portfolio
 
-## Setup
+A futuristic, production-grade personal portfolio built with React, Three.js, and TypeScript. The "Neural Forge" design features animated 3D neural networks, glitch effects, holographic cards, and a CRT scanline overlay — designed to feel like you're inside an AI's mind.
 
-### Prerequisites
-- Node.js installed
-- Git installed
-- Claude Code CLI installed
+## Tech Stack
 
-### Environment Setup
+- **React** (Vite) + **TypeScript** — strict mode
+- **Three.js** + @react-three/fiber + @react-three/drei — 3D neural network, skill constellation, icosahedron
+- **Framer Motion** — section animations, staggered reveals, page transitions
+- **Tailwind CSS** — utility-first styling with custom theme
+- **React Router v6** — SPA navigation + secret admin route
+- **Supabase** (optional) — dynamic project management
+- **Vercel** — deployment
 
-1. Copy `.env` and add your API tokens:
-   - `VERCEL_API_TOKEN` - Get from https://vercel.com/account/tokens
-   - `SUPABASE_API_KEY` - Get from https://app.supabase.com → Project → Settings → API
-   - `GITHUB_TOKEN` - (Optional) Get from https://github.com/settings/tokens
+## Screenshots
 
-2. Start Claude Code with environment variables:
-   ```powershell
-   .\start-claude.ps1
-   ```
+> _Add screenshots or a demo GIF here_
 
-## MCP Servers Configured
+## Local Development
 
-- **GitHub** - GitHub integration via MCP
-- **Vercel** - Deploy and manage Vercel projects
-- **Supabase** - Database and backend services
-- **Stitch** - Google's design-to-code platform
-- **React Bits** - 135+ animated React components
+```bash
+# Install dependencies
+npm install
 
-## Verify MCP Servers
+# Copy environment variables
+cp .env.example .env
 
-Inside Claude Code:
+# Start dev server
+npm run dev
 ```
-/mcp
+
+The app runs at `http://localhost:5173`.
+
+## Environment Variables
+
+| Variable | Description | Required |
+|---|---|---|
+| `VITE_ADMIN_USER` | Admin panel username | Yes (for /admin) |
+| `VITE_ADMIN_PASS` | Admin panel password | Yes (for /admin) |
+| `VITE_SUPABASE_URL` | Supabase project URL | No |
+| `VITE_SUPABASE_ANON_KEY` | Supabase anonymous/public key | No |
+
+## Adding a New Project
+
+### Option A: Edit config file
+
+Edit `src/config/projects.config.ts` and add an entry:
+
+```typescript
+{
+  id: "5",
+  title: "My New Project",
+  description: "Description of the project...",
+  techTags: ["Python", "LangGraph", "FastAPI"],
+  projectUrl: "https://example.com",
+  githubUrl: "https://github.com/user/repo",
+  visible: true,
+}
 ```
+
+### Option B: Admin panel
+
+Navigate to `/admin`, log in with your credentials, and use the dashboard to add/edit/toggle/delete projects.
+
+## Deployment
+
+### Vercel
+
+1. Push code to GitHub
+2. Import the repo on [vercel.com](https://vercel.com)
+3. Set environment variables in Vercel project settings:
+   - `VITE_ADMIN_USER`
+   - `VITE_ADMIN_PASS`
+   - `VITE_SUPABASE_URL` (optional)
+   - `VITE_SUPABASE_ANON_KEY` (optional)
+4. Deploy — Vercel auto-detects Vite
+
+### Supabase Setup (Optional)
+
+1. Create a Supabase project
+2. Run the migration to create the `projects` table with RLS policies
+3. Add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` to your `.env`
+4. The admin panel will automatically use Supabase for CRUD operations
 
 ## Project Structure
 
 ```
-portfolio_website/
-├── .claude/
-│   └── settings.json      # Full access mode enabled
-├── .mcp.json              # MCP server configurations
-├── .env                   # API tokens (not committed)
-├── .gitignore            # Protects sensitive files
-├── start-claude.ps1      # Helper script to load env vars
-└── README.md             # This file
+src/
+  components/
+    three/          — Three.js 3D scenes (neural network, skills, icosahedron)
+    ui/             — Reusable UI components (glitch text, cursor, cards)
+    sections/       — Page sections (Hero, About, Skills, Projects, etc.)
+    admin/          — Admin panel components
+    layout/         — Navbar
+  config/           — Project data and social links
+  hooks/            — Custom React hooks
+  lib/              — Supabase client
+  routes/           — Route guards
+  styles/           — Global CSS with CRT overlay, glitch keyframes
 ```
+
+## License
+
+MIT
